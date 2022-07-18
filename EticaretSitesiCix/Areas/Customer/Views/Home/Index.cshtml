@@ -1,0 +1,28 @@
+﻿@model IEnumerable<EticaretSitesiCix.Models.Urun>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        @await Component.InvokeAsync("KategoriListesi")
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        @item.Adi
+                    </div>
+                    <img src="@Url.Content(@item.Fotograf)" class="card-img-top" alt="..." style="height:200px">
+                    <div class="card-body">
+                        <p class="card-text">@item.Aciklama</p>
+                    </div>
+                    <div class="card-footer">
+                        <label style="font-size:20px;color:darkorange"><b>@item.Fiyat.ToString("0.00") TL </b></label>
+                        <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-info" style="float:right">Detay</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

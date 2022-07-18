@@ -1,0 +1,91 @@
+﻿@model EticaretSitesiCix.Models.Sepet
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <form method="post">
+            <input hidden asp-for="UrunId" />
+            <div class="card mb-12">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="@Model.Urun.Fotograf" class="img-fluid rounded-start" alt="..." style="300px">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <dl class="row">
+                                <dt class="col-sm-3">
+                                    Stok
+                                </dt>
+                                <dd class="col-sm-9">
+
+                                    @if (Model.Urun.StoktaMi)
+                                    {
+
+                                        <label class="btn btn-success btn-sm"><i class="bi bi-check-lg"></i>Evet</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="btn btn-danger btn-sm"><i class="bi bi-x-lg"></i>Hayır</label>
+                                    }
+                                </dd>
+                                <dt class="col-sm-3">
+                                    Ad
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Model.Urun.Adi
+                                </dd>
+                                <dt class="col-sm-3">
+                                    Açıklama
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Model.Urun.Aciklama
+                                </dd>
+                                <dt class="col-sm-3">
+                                    Fiyat
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Model.Urun.Fiyat.ToString("0.00")
+                                </dd>
+                                <dt class="col-sm-3">
+                                    Adet
+                                </dt>
+                                <dd class="col-sm-9">
+                                    <input asp-for="UrunSayisi" class="form-control" />
+                                </dd>
+                            </dl>
+
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-primary form-control"><i class="bi bi-house-door"></i> Ana Sayfa</a>
+                    </div>
+                    <div class="col-md-4">
+                        
+                    </div>
+                    <div class="col-md-3">
+                        @if (Model.Urun.StoktaMi)
+                        {
+
+                            <button type="submit" class="btn btn-success btn-sm form-control"><i class="bi bi-cart4"></i> Sepete Ekle</button>
+                        }
+                        else
+                        {
+                            <label class="btn btn-danger btn-sm form-control"><i class="bi bi-cart4"></i> Ürün Tükendi</label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

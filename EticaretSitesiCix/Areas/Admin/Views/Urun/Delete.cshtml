@@ -1,0 +1,74 @@
+﻿@model EticaretSitesiCix.Models.Urun
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Bu Kaydı Silmek İstediğinizden Emin Misiniz?</h3>
+<div>
+    
+    <dl class="row">
+        <dt class = "col-sm-2">
+           Ürün Adı
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+        <dt class = "col-sm-2">
+            Açıklama
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+        <dt class = "col-sm-2">
+            Ölçü
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Olcu)
+        </dd>
+        <dt class = "col-sm-2">
+           Model
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class = "col-sm-2">
+           Fiyat
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+        <dt class = "col-sm-2">
+           Fotoğraf
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fotograf)
+        </dd>
+        <dt class = "col-sm-2">
+           Ana Sayfa
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AnaSayfadaMi)
+        </dd>
+        <dt class = "col-sm-2">
+            Stok
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StoktaMi)
+        </dd>
+        <dt class = "col-sm-2">
+            Kategori
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Sil" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Kayıt Listesi</a>
+    </form>
+</div>

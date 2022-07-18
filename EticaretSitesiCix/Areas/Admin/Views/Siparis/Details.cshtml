@@ -1,0 +1,119 @@
+﻿@model EticaretSitesiCix.Models.SiparisDetayViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <input hidden asp-for="Siparis.Id" />
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div>
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            Adı
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.Ad
+                        </dd>
+                        <dt class="col-sm-4">
+                            Soyadı
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.Soyad
+                        </dd>
+                        <dt class="col-sm-4">
+                            Telefon
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.TelefonNo
+                        </dd>
+                        <dt class="col-sm-4">
+                            Adres
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.Adres
+                        </dd>
+                        <dt class="col-sm-4">
+                            Semt
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.Semt
+                        </dd>
+                        <dt class="col-sm-4">
+                            Şehir
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.Sehir
+                        </dd>
+                        <dt class="col-sm-4">
+                            PostaKodu
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.PostaKodu
+                        </dd>
+                        <dt class="col-sm-4">
+                            Sipariş Tarihi
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Model.Siparis.SiparisTarihi.ToShortDateString()
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+
+                    <ul class="list-group mb-3">
+                        @foreach (var item in Model.SiparisDetay)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div>
+                                    <h6 class="my-0">@item.Urun.Adi</h6>
+                                    <small class="text-muted">Adet: @item.UrunAdedi</small>
+                                </div>
+                                <span class="text-muted">@((item.UrunAdedi*item.Urun.Fiyat).ToString("0.00")) TL</span>
+                            </li>
+                        }
+
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div class="text-success">
+                                <h6 class="my-0">Toplam Tutar</h6>
+
+                            </div>
+                            <span class="text-success">@(Model.Siparis.SiparisTutari.ToString("0.00")) TL</span>
+                        </li>
+
+                    </ul>
+                    @if (User.IsInRole(Diger.Rol_Admin))
+                    {
+                        <br />
+                        @if (Model.Siparis.SiparisDurumu == Diger.DurumOnaylandı)
+                        {
+                            <input type="submit" value="Kargoya Ver"
+                                   class="btn btn-primary form-control"
+                                   formaction="/Admin/Siparis/KargoyaVer"
+                                   formmethod="post" />
+                        }
+                        @if (Model.Siparis.SiparisDurumu == Diger.DurumBeklemede)
+                        {
+                            <input type="submit" value="Onayla"
+                                   class="btn btn-primary form-control"
+                                   formaction="/Admin/Siparis/Onaylandi"
+                                   formmethod="post" />
+                        }
+
+                    }
+                    else
+                    {
+                        <label class="btn btn-primary form-control">@Model.Siparis.SiparisDurumu</label>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
