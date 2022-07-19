@@ -72,7 +72,7 @@ namespace EticaretSitesiCix.Areas.Admin.Controllers
                 if(files.Count>0)
                 {
                     string filename = Guid.NewGuid().ToString();
-                    var upload = Path.Combine(_he.WebRootPath, @"~/images/ÜrünResimleri/");
+                    var upload = Path.Combine(_he.WebRootPath, @"images/ÜrünResimleri/");
                     var ext = Path.GetExtension(files[0].FileName);
                     if(urun.Fotograf!=null)
                     {
@@ -86,7 +86,7 @@ namespace EticaretSitesiCix.Areas.Admin.Controllers
                     {
                         files[0].CopyTo(filestreams);
                     }
-                    urun.Fotograf = @"images\ÜrünResimleri" + filename + ext;
+                    urun.Fotograf = @"~/images/ÜrünResimleri/" + filename + ext;
                 }
                 _context.Add(urun);
                 await _context.SaveChangesAsync();
@@ -124,7 +124,7 @@ namespace EticaretSitesiCix.Areas.Admin.Controllers
             if (files.Count > 0)
             {
                 string filename = Guid.NewGuid().ToString();
-                var upload = Path.Combine(_he.WebRootPath, @"images\ÜrünResimleri");
+                var upload = Path.Combine(_he.WebRootPath, @"images/ÜrünResimleri/");
                 var ext = Path.GetExtension(files[0].FileName);
                 if (urun.Fotograf != null)
                 {
@@ -138,7 +138,7 @@ namespace EticaretSitesiCix.Areas.Admin.Controllers
                 {
                     files[0].CopyTo(filestreams);
                 }
-                urun.Fotograf = @"images\ÜrünResimleri" + filename + ext;
+                urun.Fotograf = @"~/images/ÜrünResimleri/" + filename + ext;
             }
 
             if (ModelState.IsValid)

@@ -190,14 +190,14 @@ namespace EticaretSitesiCix.Areas.Customer.Controllers
        
         public IActionResult Add(int sepetId)
         {
-            var cart = _db.Sepetler.FirstOrDefault(i => i.Id == sepetId);
+            var cart = _db.Sepetler.Where(i=>i.Id==sepetId).FirstOrDefault();
             cart.UrunSayisi += 1;
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Decrease(int sepetId)
         {
-            var cart = _db.Sepetler.FirstOrDefault(i => i.Id == sepetId);
+            var cart = _db.Sepetler.Where(i => i.Id == sepetId).FirstOrDefault();
             if(cart.UrunSayisi==1)
             {
                 var count = _db.Sepetler.Where(u => u.KullaniciId == cart.KullaniciId).ToList().Count();
@@ -215,7 +215,7 @@ namespace EticaretSitesiCix.Areas.Customer.Controllers
         }
         public IActionResult Remove(int sepetId)
         {
-            var cart = _db.Sepetler.FirstOrDefault(i => i.Id == sepetId);
+            var cart = _db.Sepetler.Where(i => i.Id == sepetId).FirstOrDefault();
            
                 var count = _db.Sepetler.Where(u => u.KullaniciId == cart.KullaniciId).ToList().Count();
                 _db.Sepetler.Remove(cart);

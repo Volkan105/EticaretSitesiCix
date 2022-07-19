@@ -37,7 +37,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="@item.Urun.Fotograf" width="60" />
+                                        <img src="@Url.Content(item.Urun.Fotograf)" width="60" />
                                     </td>
                                     <td>
                                         @item.Urun.Adi
@@ -46,9 +46,9 @@
                                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                             <div class="btn-group me-2" role="group" aria-label="First group">
                                                 <input type="text" style="max-width:45px;" class="form-control" value="@item.UrunSayisi" />
-                                                <button asp-action="Decrease" asp-route-cartId="@item.Id" class="btn btn-primary"><i class="bi bi-dash-lg"></i></button>
-                                                <button asp-action="Add" asp-route-cartId="@item.Id" class="btn btn-success"><i class="bi bi-plus-lg"></i></button>
-                                                <button asp-action="Remove" asp-route-cartId="@item.Id" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                                                <button asp-action="Decrease" asp-route-sepetId="@item.Id" class="btn btn-primary"><i class="bi bi-dash-lg"></i></button>
+                                                <button asp-action="Add" asp-route-sepetId="@item.Id" class="btn btn-success"><i class="bi bi-plus-lg"></i></button>
+                                                <button asp-action="Remove" asp-route-sepetId="@item.Id" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
                                             </div>
 
                                         </div>
